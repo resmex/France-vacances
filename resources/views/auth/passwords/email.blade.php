@@ -4,10 +4,10 @@
 
 @section('page')
 <div class="tt-auth-bg">
-    <div class="tt-auth-card" data-aos="fade-up">
+    <div class="tt-auth-card">
         <div class="brand-icon"><i class="fas fa-key"></i></div>
         <h2>Forgot Password?</h2>
-        <p class="subtitle">Enter your email and we'll send you reset instructions.</p>
+        <p class="subtitle">Enter your email and we will send you reset instructions.</p>
 
         @if (session('status'))
         <div class="tt-success-alert">
@@ -30,13 +30,13 @@
                 @enderror
             </div>
 
-            <button type="submit" class="tt-btn-primary">
+            <button type="submit" class="btn-tt-primary w-100 text-center d-block">
                 <i class="fas fa-paper-plane me-2"></i>Send Reset Link
             </button>
 
             <div class="text-center mt-3">
                 <a href="{{ route('login') }}" class="tt-auth-link">
-                    <i class="fas fa-arrow-left me-1"></i> Back to Login
+                    <i class="fas fa-arrow-left me-1"></i> Back
                 </a>
             </div>
         </form>

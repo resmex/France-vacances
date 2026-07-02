@@ -4,7 +4,7 @@
 
 @section('page')
 <div class="tt-auth-bg">
-    <div class="tt-auth-card" data-aos="fade-up">
+    <div class="tt-auth-card">
         <div class="brand-icon"><i class="fas fa-shield-halved"></i></div>
         <h2>Confirm Password</h2>
         <p class="subtitle">Please confirm your password before continuing</p>
@@ -23,7 +23,7 @@
                 @enderror
             </div>
 
-            <button type="submit" class="tt-btn-primary">
+            <button type="submit" class="btn-tt-primary w-100 text-center d-block">
                 <i class="fas fa-check me-2"></i>Confirm Password
             </button>
 

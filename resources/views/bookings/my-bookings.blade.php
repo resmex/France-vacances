@@ -5,16 +5,15 @@
 @section('page')
 @include('partials.navbar')
 
-<section class="tt-page-hero tt-page-hero-sm">
-	<div class="tt-page-hero-bg" style="background-image: url('{{ asset('images/place-4.jpg') }}');"></div>
-	<div class="container" data-aos="fade-up">
+<section class="tt-page-hero tt-page-hero-sm" style="background-image:url('{{ asset('images/destination-3.jpg') }}');">
+	<div class="container">
 		<h1 class="tt-page-title">My <span class="accent">Bookings</span></h1>
 		<p class="tt-page-subtitle">Your booking history with France Vacances.</p>
 	</div>
 </section>
 
 <section class="tt-section">
-	<div class="container" style="max-width:900px;">
+	<div class="container">
 		@if(session('success'))
 		<div class="alert alert-success border-0 mb-4">
 			<i class="fas fa-check-circle me-2"></i>{{ session('success') }}
@@ -23,7 +22,7 @@
 
 		@if($bookings->count() > 0)
 			@foreach($bookings as $booking)
-			<div class="tt-sidebar-card mb-4" data-aos="fade-up">
+			<div class="tt-sidebar-card mb-4">
 				<div class="row g-0">
 					<div class="col-md-3">
 						<img src="{{ $booking->destination->image_url ?? asset('images/destination-1.jpg') }}"
@@ -76,7 +75,7 @@
 							</span>
 							@endif
 							<a href="{{ route('desti.show', $booking->destination_id) }}" class="btn-tt-outline py-1 px-3" style="font-size:.85rem;">
-								<i class="fas fa-eye me-1"></i> View Property
+								<i class="fas fa-eye me-1"></i> View Details
 							</a>
 							<small class="text-muted ms-auto">Booked {{ $booking->created_at->diffForHumans() }}</small>
 						</div>
@@ -88,11 +87,11 @@
 				{{ $bookings->links('pagination::bootstrap-4') }}
 			</div>
 		@else
-		<div class="tt-empty-state" data-aos="fade-up">
+		<div class="tt-empty-state">
 			<div class="icon"><i class="fas fa-calendar-alt"></i></div>
 			<h3>No Bookings Yet</h3>
-			<p>You haven't made any bookings yet. Browse our holiday properties and plan your perfect French escape.</p>
-			<a href="{{ route('packages') }}" class="btn-tt-primary">Browse Properties</a>
+			<p>You have not made any bookings yet. Browse our holiday properties to get started.</p>
+			<a href="{{ route('packages') }}" class="btn-tt-primary">View Properties</a>
 		</div>
 		@endif
 	</div>

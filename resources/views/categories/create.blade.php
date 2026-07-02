@@ -31,7 +31,7 @@
             <div class="d-flex gap-3">
                 <button type="submit" class="btn-admin-primary">
                     <i class="fas fa-save me-1"></i>
-                    {{ isset($category) ? 'Update Region' : 'Add Region' }}
+                    {{ isset($category) ? 'Update' : 'Save' }}
                 </button>
                 <a href="{{ route('categories.index') }}" class="btn-admin-outline">Cancel</a>
             </div>

@@ -6,7 +6,7 @@
 @include('partials.navbar')
 
 <!-- Page Hero -->
-<section class="tt-page-hero">
+<section class="tt-page-hero" style="background-image:url('{{ asset('images/place-3.jpg') }}');">
 	@php
 		$heroBg = [
 			'Provence'     => 'place-1.jpg',
@@ -17,19 +17,18 @@
 			'Loire Valley' => 'place-6.jpg',
 		][$region->name] ?? 'place-1.jpg';
 	@endphp
-	<div class="tt-page-hero-bg" style="background-image: url('{{ asset('images/' . $heroBg) }}');"></div>
-	<div class="container" data-aos="fade-up">
+	<div class="container">
 		<h1 class="tt-page-title">Holiday Properties in <span class="accent">{{ $region->name }}</span></h1>
 		<p class="tt-page-subtitle">
 			@php
 				$regionDesc = [
-					'Provence'     => 'Lavender fields, hilltop villages, and sun-drenched countryside — Provence at its finest.',
-					"Côte d'Azur"  => 'Glamorous Riviera coastline, turquoise seas, and world-class dining.',
-					'Dordogne'     => 'Medieval castles, prehistoric caves, and the most beautiful river valley in France.',
-					'French Alps'  => 'Ski-in/ski-out chalets, alpine meadows, and the world\'s greatest ski area.',
-					'Paris'        => 'The City of Light — iconic apartments steps from the Eiffel Tower and beyond.',
-					'Loire Valley' => 'Châteaux, vineyards, and gentle cycling through the Garden of France.',
-				][$region->name] ?? 'Discover beautiful holiday properties in ' . $region->name . ', France.';
+					'Provence'     => 'Lavender fields, hilltop villages and countryside.',
+					"Côte d'Azur"  => 'Coastline, beaches and good local food.',
+					'Dordogne'     => 'Old castles, caves and a river valley.',
+					'French Alps'  => 'Ski chalets and mountain views.',
+					'Paris'        => 'Apartments near the main sights of the city.',
+					'Loire Valley' => 'Châteaux, vineyards and cycling routes.',
+				][$region->name] ?? 'Holiday homes in ' . $region->name . ', France.';
 			@endphp
 			{{ $regionDesc }}
 		</p>
@@ -39,7 +38,7 @@
 <!-- Region Navigation -->
 <section class="tt-section-sm" style="background:var(--tt-cream);">
 	<div class="container">
-		<div class="d-flex flex-wrap gap-2 justify-content-center" data-aos="fade-up">
+		<div class="d-flex flex-wrap gap-2 justify-content-center">
 			@foreach($allRegions as $r)
 			<a href="{{ route('regions.show', urlencode($r->name)) }}"
 			   class="{{ $r->id === $region->id ? 'btn-tt-primary' : 'btn-tt-outline' }} px-3 py-2"
@@ -57,23 +56,18 @@
 <!-- Properties in This Region -->
 <section class="tt-section">
 	<div class="container">
-		<div class="tt-section-header text-center" data-aos="fade-up">
+		<div class="tt-section-header text-center">
 			<h2 class="tt-title">{{ $properties->total() }} {{ Str::plural('Property', $properties->total()) }} in <span class="accent">{{ $region->name }}</span></h2>
-			<p class="tt-subtitle">Sorted by guest rating — highest rated first.</p>
+			<p class="tt-subtitle">Sorted by guest rating, highest first.</p>
 		</div>
 
 		@if($properties->count() > 0)
 		<div class="tt-dest-grid">
 			@foreach($properties as $property)
-			<article class="tt-dest-card" data-aos="fade-up" data-aos-delay="{{ ($loop->iteration % 3) * 100 }}">
+			<article class="tt-dest-card">
 				<div class="tt-dest-card-img">
 					<img src="{{ $property->image_url }}" alt="{{ $property->title }}" loading="lazy">
 					<span class="badge-cat">{{ $property->property_type_label }}</span>
-					@if($property->featured)
-					<span style="position:absolute;top:.6rem;left:.6rem;background:var(--tt-accent);color:var(--tt-dark);font-size:.7rem;font-weight:700;padding:.2rem .6rem;border-radius:50px;">
-						⭐ Top Pick
-					</span>
-					@endif
 				</div>
 				<div class="tt-dest-card-body">
 					<div class="tt-dest-card-meta">
@@ -97,7 +91,7 @@
 							<div class="tt-dest-price-value">{{ $property->price_display }}</div>
 						</div>
 						<a href="{{ route('desti.show', $property->id) }}" class="tt-dest-card-link">
-							View Property <i class="fas fa-arrow-right"></i>
+							View Details <i class="fas fa-arrow-right"></i>
 						</a>
 					</div>
 				</div>
@@ -105,14 +99,14 @@
 			@endforeach
 		</div>
 
-		<div class="tt-pagination mt-5 d-flex justify-content-center" data-aos="fade-up">
+		<div class="tt-pagination mt-5 d-flex justify-content-center">
 			{{ $properties->links('pagination::bootstrap-4') }}
 		</div>
 		@else
-		<div class="tt-empty-state" data-aos="fade-up">
+		<div class="tt-empty-state">
 			<div class="icon"><i class="fas fa-home"></i></div>
 			<h3>No Properties Listed Yet</h3>
-			<p>We're working on adding properties in {{ $region->name }}. Browse our other regions in the meantime.</p>
+			<p>We are still adding properties in {{ $region->name }}. Try our other regions.</p>
 			<a href="{{ route('packages') }}" class="btn-tt-primary">View All Properties</a>
 		</div>
 		@endif
@@ -122,21 +116,20 @@
 <!-- Other Regions -->
 <section class="tt-section tt-section-light">
 	<div class="container">
-		<div class="tt-section-header text-center" data-aos="fade-up">
-			<div class="tt-pretitle">Explore More</div>
+		<div class="tt-section-header text-center">
 			<h2 class="tt-title">Other <span class="accent">Regions</span></h2>
 		</div>
 		@php
 			$regionMeta = [
-				'Provence'      => ['icon' => 'fas fa-sun',           'tag' => 'Lavender &amp; Wine'],
-				"Côte d'Azur"   => ['icon' => 'fas fa-water',         'tag' => 'Riviera Glamour'],
-				'Dordogne'      => ['icon' => 'fas fa-tree',           'tag' => 'Castles &amp; Caves'],
-				'French Alps'   => ['icon' => 'fas fa-mountain',       'tag' => 'Ski &amp; Summer'],
-				'Paris'         => ['icon' => 'fas fa-landmark',       'tag' => 'City of Light'],
-				'Loire Valley'  => ['icon' => 'fas fa-wine-glass-alt', 'tag' => 'Gardens &amp; Châteaux'],
+				'Provence'      => ['icon' => 'fas fa-sun',           'tag' => 'Lavender and vineyards'],
+				"Côte d'Azur"   => ['icon' => 'fas fa-water',         'tag' => 'Coast and beaches'],
+				'Dordogne'      => ['icon' => 'fas fa-tree',           'tag' => 'Castles and caves'],
+				'French Alps'   => ['icon' => 'fas fa-mountain',       'tag' => 'Mountains'],
+				'Paris'         => ['icon' => 'fas fa-landmark',       'tag' => 'City'],
+				'Loire Valley'  => ['icon' => 'fas fa-wine-glass-alt', 'tag' => 'Gardens and châteaux'],
 			];
 		@endphp
-		<div class="tt-cat-grid" data-aos="fade-up">
+		<div class="tt-cat-grid">
 			@foreach($allRegions->where('id', '!=', $region->id)->take(5) as $r)
 			@php $meta = $regionMeta[$r->name] ?? ['icon' => 'fas fa-map-marker-alt', 'tag' => 'France']; @endphp
 			<a href="{{ route('regions.show', urlencode($r->name)) }}" class="tt-cat-card text-decoration-none">

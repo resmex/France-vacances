@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Header -->
-<div class="admin-welcome" style="background:linear-gradient(135deg,#064e3b 0%,#065f46 100%);">
+<div class="admin-welcome" style="background:#065f46;">
     <div class="row align-items-center">
         <div class="col-md-8">
             <h2><i class="fas fa-sterling-sign me-2" style="color:#34d399;"></i> Finance Portal</h2>

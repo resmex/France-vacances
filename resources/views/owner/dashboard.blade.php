@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Header -->
-<div class="admin-welcome" style="background:linear-gradient(135deg,#082B4C 0%,#0d3d6e 100%);">
+<div class="admin-welcome">
     <div class="row align-items-center">
         <div class="col-md-8">
             <h2><i class="fas fa-key me-2" style="color:var(--admin-accent);"></i> Owner Portal</h2>

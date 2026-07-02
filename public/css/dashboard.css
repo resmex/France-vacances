@@ -1,0 +1,49 @@
+/* ============================================
+   ADMIN DASHBOARD (home.blade.php only)
+   Plain, simple, student-project style
+   ============================================ */
+
+.dash-welcome {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    box-shadow: none;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.dash-welcome h2 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--admin-primary, #082B4C);
+    margin: 0 0 .25rem;
+}
+
+.dash-welcome p {
+    margin: 0;
+    font-size: .88rem;
+    color: var(--admin-text-muted, #6b7280);
+}
+
+.dash-stat {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    box-shadow: none;
+    padding: .9rem;
+    text-align: center;
+    height: 100%;
+}
+
+.dash-stat .num {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--admin-primary, #082B4C);
+    line-height: 1.15;
+}
+
+.dash-stat .lbl {
+    font-size: .76rem;
+    color: var(--admin-text-muted, #6b7280);
+    margin-top: .2rem;
+}

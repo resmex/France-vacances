@@ -21,12 +21,11 @@
 @section('page')
 @include('partials.navbar')
 
-<section class="tt-page-hero tt-page-hero-sm">
-    <div class="tt-page-hero-bg" style="background-image:url('{{ asset('images/place-3.jpg') }}');filter:hue-rotate(180deg);"></div>
-    <div class="container" data-aos="fade-up">
-        <span style="background:#22c55e;color:#fff;padding:4px 14px;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;">Chapter 02</span>
+<section class="tt-page-hero tt-page-hero-sm" style="background-image:url('{{ asset('images/image_2.jpg') }}');">
+    <div class="container">
+        <span style="background:#22c55e;color:#fff;padding:4px 14px;border-radius:8px;font-size:.75rem;font-weight:700;text-transform:uppercase;">Chapter 02</span>
         <h1 class="tt-page-title mt-2">Security <span class="accent">Design</span></h1>
-        <p class="tt-page-subtitle">Protection, access control, and threat mitigation across every layer of France Vacances.</p>
+        <p class="tt-page-subtitle">Protection, access control, and threat handling across every layer of France Vacances.</p>
     </div>
 </section>
 
@@ -36,7 +35,7 @@
             <div class="col-lg-8">
 
                 <!-- Security overview matrix -->
-                <div class="tt-sidebar-card mb-5" style="background:var(--tt-primary);color:#fff;" data-aos="fade-up">
+                <div class="tt-sidebar-card mb-5" style="background:var(--tt-primary);color:#fff;">
                     <h5 style="color:var(--tt-accent);margin-bottom:1.25rem;">Security Coverage Matrix</h5>
                     <div class="row g-2">
                         @foreach([
@@ -64,7 +63,7 @@
                 </div>
 
                 <!-- CSRF -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">1. CSRF Protection</h2>
                     <p>Every HTML form in France Vacances includes a <strong>CSRF token</strong> via Laravel's <code>@csrf</code> directive. The <code>VerifyCsrfToken</code> middleware validates the token on all state-changing requests, preventing cross-site request forgery attacks.</p>
 
@@ -90,7 +89,7 @@
                 </div>
 
                 <!-- Password Hashing -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">2. Password Hashing</h2>
                     <p>Passwords are <strong>never stored in plain text</strong>. Laravel's <code>Hash::make()</code> uses bcrypt with a work factor of 12 by default, making brute-force attacks computationally expensive.</p>
 
@@ -114,7 +113,7 @@
                 </div>
 
                 <!-- Role-Based Access Control -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">3. Role-Based Access Control</h2>
                     <p>France Vacances uses a <strong>two-tier role system</strong> stored as an <code>enum</code> column on the users table. The <code>admin</code> middleware guards all admin-only routes.</p>
 
@@ -157,7 +156,7 @@
                 </div>
 
                 <!-- Input Validation -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">4. Input Validation via Form Requests</h2>
                     <p>All user inputs are validated using <strong>Laravel Form Request</strong> classes before reaching the controller. This ensures invalid or malicious data never reaches the database layer.</p>
 
@@ -180,7 +179,7 @@ $request-><span class="fn">validate</span>([
                 </div>
 
                 <!-- SQL Injection Prevention -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">5. SQL Injection Prevention</h2>
                     <p>The Eloquent ORM and Laravel's query builder use <strong>PDO parameterised statements</strong> for all queries. Raw SQL is avoided; when needed, <code>DB::select()</code> uses bound parameters.</p>
 
@@ -197,7 +196,7 @@ $request-><span class="fn">validate</span>([
                 </div>
 
                 <!-- XSS Prevention -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">6. XSS Prevention</h2>
                     <p>Blade's <strong>double-brace syntax</strong> <code>{{ }}</code> automatically HTML-encodes output. Unescaped output (<code>{!! !!}</code>) is only used for trusted HTML — admin-generated rich text content from the Trix editor.</p>
 
@@ -219,7 +218,7 @@ $request-><span class="fn">validate</span>([
                 </div>
 
                 <!-- Email Verification -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">7. Email Verification</h2>
                     <p>The <code>User</code> model implements Laravel's <code>MustVerifyEmail</code> interface. Unverified users are redirected to the verification notice page and cannot access protected routes.</p>
 
@@ -237,7 +236,7 @@ $request-><span class="fn">validate</span>([
 
             <!-- Sidebar -->
             <div class="col-lg-4">
-                <div class="tt-sidebar-card" style="position:sticky;top:90px;" data-aos="fade-left">
+                <div class="tt-sidebar-card" style="position:sticky;top:90px;">
                     <h6 class="fw-bold mb-3" style="color:var(--tt-primary);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;">Contents</h6>
                     @foreach([
                         '1. CSRF Protection',

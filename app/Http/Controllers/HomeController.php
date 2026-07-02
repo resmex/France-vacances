@@ -49,7 +49,8 @@ class HomeController extends Controller
         $recentDestinations = Destinations::latest()->take(5)->get();
         $recentBookings     = Booking::with('user', 'destination')->latest()->take(6)->get();
         $recentBlogs        = Blog::latest()->take(3)->get();
+        $latestUsers        = User::latest()->take(5)->get();
 
-        return view('home', compact('stats', 'recentDestinations', 'recentBookings', 'recentBlogs'));
+        return view('home', compact('stats', 'recentDestinations', 'recentBookings', 'recentBlogs', 'latestUsers'));
     }
 }

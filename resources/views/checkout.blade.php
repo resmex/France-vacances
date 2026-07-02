@@ -7,9 +7,8 @@
 
 <!-- Page Hero -->
 <section class="tt-page-hero tt-page-hero-sm">
-	<div class="tt-page-hero-bg" style="background-image: url('{{ asset('images/place-1.jpg') }}');"></div>
-	<div class="container" data-aos="fade-up">
-		<h1 class="tt-page-title">Secure <span class="accent">Checkout</span></h1>
+	<div class="container">
+		<h1 class="tt-page-title">Checkout</h1>
 	</div>
 </section>
 
@@ -18,7 +17,7 @@
 	<div class="container">
 		<div class="row g-5">
 			<!-- Billing Info -->
-			<div class="col-lg-7" data-aos="fade-up">
+			<div class="col-lg-7">
 				<div class="tt-sidebar-card">
 					<h4 class="mb-1"><i class="fas fa-user me-2"></i> Personal Information</h4>
 					<p class="text-muted mb-4">Fill in your details to complete the booking</p>
@@ -72,7 +71,7 @@
 			</div>
 
 			<!-- Order Summary -->
-			<div class="col-lg-5" data-aos="fade-left">
+			<div class="col-lg-5">
 				<div class="tt-sidebar-card">
 					<h4 class="mb-1"><i class="fas fa-home me-2"></i> Your Property</h4>
 					<p class="text-muted mb-4">Booking summary</p>
@@ -101,7 +100,7 @@
 					</div>
 
 					<a href="{{ route('packages') }}" class="btn-tt-primary w-100 text-center d-block">
-						<i class="fas fa-search me-2"></i> Browse Properties
+						<i class="fas fa-search me-2"></i> View Properties
 					</a>
 
 					<div class="text-center mt-3">

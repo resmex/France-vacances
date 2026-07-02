@@ -5,16 +5,7 @@
 @section('page')
 @include('partials.navbar')
 
-<!-- Page Hero -->
-<section class="tt-page-hero tt-page-hero-sm">
-	<div class="tt-page-hero-bg" style="background-image: url('{{ asset('images/place-1.jpg') }}');"></div>
-	<div class="container" data-aos="fade-up">
-		<h1 class="tt-page-title">Welcome back, <span class="accent">{{ $user->name }}</span></h1>
-		<p class="tt-page-subtitle">Manage your bookings, saved properties, and account settings.</p>
-	</div>
-</section>
-
-<section class="tt-section">
+<section class="tt-section tt-dash-page">
 	<div class="container">
 		@if(session('success'))
 		<div class="alert alert-success border-0 mb-4 rounded-3">
@@ -22,188 +13,216 @@
 		</div>
 		@endif
 
-		<!-- Stats Row -->
-		<div class="row g-3 mb-5" data-aos="fade-up">
-			@php
-				$kpis = [
-					['icon'=>'fas fa-calendar-alt',  'color'=>'#082B4C', 'value'=>$stats['bookings'],  'label'=>'Total Bookings'],
-					['icon'=>'fas fa-check-circle',  'color'=>'#22c55e', 'value'=>$stats['confirmed'], 'label'=>'Confirmed Stays'],
-					['icon'=>'fas fa-heart',         'color'=>'#ef4444', 'value'=>$stats['wishlist'],  'label'=>'Saved Properties'],
-					['icon'=>'fas fa-star',          'color'=>'#D4AF37', 'value'=>$stats['reviews'],   'label'=>'Reviews Written'],
-				];
-			@endphp
-			@foreach($kpis as $k)
-			<div class="col-6 col-md-3">
-				<div class="tt-sidebar-card text-center py-4">
-					<div style="width:48px;height:48px;border-radius:12px;background:{{ $k['color'] }}18;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
-						<i class="{{ $k['icon'] }}" style="font-size:1.2rem;color:{{ $k['color'] }};"></i>
-					</div>
-					<div class="fw-bold" style="font-size:1.6rem;color:var(--tt-primary);">{{ $k['value'] }}</div>
-					<div style="font-size:.8rem;color:var(--tt-dark-soft);">{{ $k['label'] }}</div>
-				</div>
-			</div>
-			@endforeach
-		</div>
-
 		<div class="row g-4">
-			<!-- Left column -->
-			<div class="col-lg-8">
+			<!-- Left column: sidebar + account summary (sticky) -->
+			<div class="col-lg-3">
+				<div class="tt-dash-sticky">
+					<div class="tt-dash-sidebar mb-4">
+						<div class="tt-dash-nav-group">Main</div>
+						<a href="{{ route('account.dashboard') }}" class="tt-dash-nav-item {{ request()->routeIs('account.dashboard') ? 'active' : '' }}">
+							<i class="fas fa-gauge-high"></i> Dashboard
+						</a>
 
-				{{-- Next Stay Banner --}}
-				@if($nextBooking)
-				<div class="tt-sidebar-card mb-4" data-aos="fade-up"
-					 style="border-left:4px solid var(--tt-accent);background:linear-gradient(135deg,var(--tt-cream),#fff);">
-					<div class="d-flex align-items-center gap-3">
-						<div style="min-width:50px;height:50px;border-radius:12px;background:var(--tt-accent);display:flex;align-items:center;justify-content:center;">
-							<i class="fas fa-plane-departure" style="color:var(--tt-dark);font-size:1.2rem;"></i>
-						</div>
-						<div class="flex-grow-1">
-							<div style="font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--tt-dark-soft);font-weight:600;">Your Next Stay</div>
-							<h5 class="mb-0 fw-bold">{{ $nextBooking->destination->title }}</h5>
-							<small class="text-muted">
-								{{ $nextBooking->check_in_date?->format('D d M Y') }}
-								@if($nextBooking->check_out_date)→ {{ $nextBooking->check_out_date->format('D d M Y') }}@endif
-								&middot; {{ $nextBooking->nights_label }}
-							</small>
-						</div>
-						<a href="{{ route('booking.confirmation', $nextBooking->id) }}"
-						   class="btn-tt-primary py-2 px-3" style="font-size:.82rem;white-space:nowrap;">
-							View Details
+						<div class="tt-dash-nav-group">My Bookings</div>
+						<a href="{{ route('bookings.my') }}" class="tt-dash-nav-item {{ request()->routeIs('bookings.my') ? 'active' : '' }}">
+							<i class="fas fa-calendar-check"></i> My Bookings
+						</a>
+						<a href="{{ route('wishlist.index') }}" class="tt-dash-nav-item {{ request()->routeIs('wishlist.index') ? 'active' : '' }}">
+							<i class="fas fa-heart"></i> Saved Properties
+						</a>
+
+						<div class="tt-dash-nav-group">Account</div>
+						<a href="{{ route('account.profile') }}" class="tt-dash-nav-item {{ request()->routeIs('account.profile') ? 'active' : '' }}">
+							<i class="fas fa-user-cog"></i> Account Settings
+						</a>
+						<a href="{{ route('contact') }}" class="tt-dash-nav-item {{ request()->routeIs('contact') ? 'active' : '' }}">
+							<i class="fas fa-headset"></i> Contact Support
+						</a>
+
+						<div class="tt-dash-nav-divider"></div>
+						<a href="{{ url('/') }}" class="tt-dash-nav-item">
+							<i class="fas fa-arrow-left"></i> Back to Website
 						</a>
 					</div>
+
+					{{-- Account Summary --}}
+					<div class="tt-dash-box">
+						<div class="tt-dash-box-header">
+							<h5>Account Summary</h5>
+						</div>
+						<div class="tt-dash-box-body">
+							<table class="tt-dash-table tt-dash-table-plain">
+								<tbody>
+									<tr>
+										<td>Name</td>
+										<td>{{ $user->name }}</td>
+									</tr>
+									<tr>
+										<td>Email</td>
+										<td>{{ $user->email }}</td>
+									</tr>
+									<tr>
+										<td>Member since</td>
+										<td>{{ $user->created_at->format('M Y') }}</td>
+									</tr>
+									<tr>
+										<td>Saved properties</td>
+										<td>{{ $stats['wishlist'] }}</td>
+									</tr>
+									<tr>
+										<td>Bookings</td>
+										<td>{{ $stats['bookings'] }}</td>
+									</tr>
+								</tbody>
+							</table>
+							<a href="{{ route('account.profile') }}" class="btn-tt-outline w-100 text-center d-block mt-3">
+								Edit Profile
+							</a>
+						</div>
+					</div>
 				</div>
-				@endif
+			</div>
+
+			<!-- Main content -->
+			<div class="col-lg-9">
+
+				{{-- Welcome --}}
+				<div class="tt-dash-welcome">
+					<h2>Welcome, {{ $user->name }}</h2>
+					<p>Manage your bookings, saved properties and account from this page.</p>
+				</div>
+
+				{{-- Summary cards --}}
+				<div class="row g-3 mb-4">
+					<div class="col-6 col-md-3">
+						<div class="tt-dash-stat">
+							<div class="num">{{ $stats['bookings'] }}</div>
+							<div class="lbl">Total Bookings</div>
+						</div>
+					</div>
+					<div class="col-6 col-md-3">
+						<div class="tt-dash-stat">
+							<div class="num">{{ $stats['confirmed'] }}</div>
+							<div class="lbl">Confirmed Bookings</div>
+						</div>
+					</div>
+					<div class="col-6 col-md-3">
+						<div class="tt-dash-stat">
+							<div class="num">{{ $stats['wishlist'] }}</div>
+							<div class="lbl">Saved Properties</div>
+						</div>
+					</div>
+					<div class="col-6 col-md-3">
+						<div class="tt-dash-stat">
+							<div class="num">{{ $stats['reviews'] }}</div>
+							<div class="lbl">Reviews</div>
+						</div>
+					</div>
+				</div>
 
 				{{-- Recent Bookings --}}
-				<div class="tt-sidebar-card mb-4" data-aos="fade-up">
-					<div class="d-flex justify-content-between align-items-center mb-3">
-						<h5 class="mb-0 fw-bold">
-							<i class="fas fa-calendar-alt me-2" style="color:var(--tt-accent);"></i>Recent Bookings
-						</h5>
-						<a href="{{ route('bookings.my') }}" class="btn-tt-outline py-1 px-3" style="font-size:.8rem;">View All</a>
+				<div class="tt-dash-box mb-4">
+					<div class="tt-dash-box-header">
+						<h5>Recent Bookings</h5>
+						<a href="{{ route('bookings.my') }}">View All</a>
 					</div>
-
-					@forelse($recentBookings as $booking)
-					<div class="d-flex align-items-center gap-3 py-3 {{ !$loop->last ? 'border-bottom' : '' }}">
-						@php
-							$img = $booking->destination->image_url ?? asset('images/destination-1.jpg');
-						@endphp
-						<img src="{{ $img }}" style="width:56px;height:56px;object-fit:cover;border-radius:10px;flex-shrink:0;"
-							 alt="{{ $booking->destination->title ?? '' }}" loading="lazy">
-						<div class="flex-grow-1 min-w-0">
-							<div class="fw-semibold text-truncate">{{ $booking->destination->title ?? 'Property' }}</div>
-							<small class="text-muted">
-								{{ optional($booking->check_in_date ?? ($booking->travel_date ?? null))->format('d M Y') ?? '—' }}
-								&middot; {{ $booking->nights_label }}
-								&middot; {{ $booking->guests }} {{ Str::plural('guest', $booking->guests) }}
-							</small>
-						</div>
-						<div class="text-end flex-shrink-0">
-							<span class="badge bg-{{ $booking->status_badge }} d-block mb-1">{{ ucfirst($booking->status) }}</span>
-							<small class="fw-bold" style="color:var(--tt-primary);">{{ $booking->total_display }}</small>
-						</div>
+					<div class="table-responsive">
+						<table class="tt-dash-table">
+							<thead>
+								<tr>
+									<th>Property</th>
+									<th>Check-in</th>
+									<th>Nights</th>
+									<th>Total</th>
+									<th>Status</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								@forelse($recentBookings as $booking)
+								<tr>
+									<td>{{ Str::limit($booking->destination->title ?? 'Property', 30) }}</td>
+									<td>{{ optional($booking->check_in_date ?? ($booking->travel_date ?? null))->format('d M Y') ?? '—' }}</td>
+									<td>{{ $booking->nights_label }}</td>
+									<td>{{ $booking->total_display }}</td>
+									<td>{{ ucfirst($booking->status) }}</td>
+									<td><a href="{{ route('booking.confirmation', $booking->id) }}">View</a></td>
+								</tr>
+								@empty
+								<tr>
+									<td colspan="6" class="text-muted">No bookings found.</td>
+								</tr>
+								@endforelse
+							</tbody>
+						</table>
 					</div>
-					@empty
-					<div class="text-center py-4 text-muted">
-						<i class="fas fa-calendar-alt fa-2x mb-2 opacity-25 d-block"></i>
-						<p class="mb-3">No bookings yet.</p>
-						<a href="{{ route('packages') }}" class="btn-tt-primary">Browse Properties</a>
-					</div>
-					@endforelse
 				</div>
 
 				{{-- Saved Properties --}}
-				<div class="tt-sidebar-card" data-aos="fade-up">
-					<div class="d-flex justify-content-between align-items-center mb-3">
-						<h5 class="mb-0 fw-bold">
-							<i class="fas fa-heart me-2" style="color:#ef4444;"></i>Saved Properties
-						</h5>
-						<a href="{{ route('wishlist.index') }}" class="btn-tt-outline py-1 px-3" style="font-size:.8rem;">View All</a>
+				<div class="tt-dash-box mb-4">
+					<div class="tt-dash-box-header">
+						<h5>Saved Properties</h5>
+						<a href="{{ route('wishlist.index') }}">View All</a>
 					</div>
-
-					@forelse($savedProperties as $prop)
-					<div class="d-flex align-items-center gap-3 py-3 {{ !$loop->last ? 'border-bottom' : '' }}">
-						<img src="{{ $prop->image_url }}"
-							 style="width:56px;height:56px;object-fit:cover;border-radius:10px;flex-shrink:0;"
-							 alt="{{ $prop->title }}" loading="lazy">
-						<div class="flex-grow-1 min-w-0">
-							<div class="fw-semibold text-truncate">{{ $prop->title }}</div>
-							<small class="text-muted">
-								<i class="fas fa-map-marker-alt me-1" style="color:var(--tt-accent);font-size:.7rem;"></i>
-								{{ $prop->location ?? $prop->region_label }}
-								&nbsp;&middot;&nbsp;
-								<i class="fas fa-star me-1" style="color:var(--tt-accent);font-size:.7rem;"></i>
-								{{ $prop->display_rating ? number_format($prop->display_rating, 2) : 'New' }}
-							</small>
-						</div>
-						<div class="text-end flex-shrink-0">
-							<div class="fw-bold" style="color:var(--tt-primary);">{{ $prop->price_display }}</div>
-							<a href="{{ route('desti.show', $prop->id) }}"
-							   style="font-size:.75rem;color:var(--tt-accent);">View &rarr;</a>
-						</div>
+					<div class="table-responsive">
+						<table class="tt-dash-table">
+							<thead>
+								<tr>
+									<th>Property</th>
+									<th>Region</th>
+									<th>Price</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								@forelse($savedProperties as $prop)
+								<tr>
+									<td>{{ Str::limit($prop->title, 30) }}</td>
+									<td>{{ $prop->category->name ?? $prop->region_label ?? '—' }}</td>
+									<td>{{ $prop->price_display }}</td>
+									<td><a href="{{ route('desti.show', $prop->id) }}">View</a></td>
+								</tr>
+								@empty
+								<tr>
+									<td colspan="4" class="text-muted">No saved properties found.</td>
+								</tr>
+								@endforelse
+							</tbody>
+						</table>
 					</div>
-					@empty
-					<div class="text-center py-4 text-muted">
-						<i class="fas fa-heart fa-2x mb-2 opacity-25 d-block"></i>
-						<p class="mb-3">No saved properties yet. Click ♡ on any property to save it.</p>
-						<a href="{{ route('packages') }}" class="btn-tt-outline">Browse Properties</a>
-					</div>
-					@endforelse
-				</div>
-			</div>
-
-			<!-- Right column -->
-			<div class="col-lg-4">
-				{{-- Account Info --}}
-				<div class="tt-sidebar-card mb-4" data-aos="fade-left">
-					<div class="text-center mb-4">
-						<div style="width:72px;height:72px;border-radius:50%;background:var(--tt-primary);display:flex;align-items:center;justify-content:center;margin:0 auto 12px;">
-							<i class="fas fa-user" style="font-size:1.8rem;color:#fff;"></i>
-						</div>
-						<h5 class="mb-0 fw-bold">{{ $user->name }}</h5>
-						<small class="text-muted">{{ $user->email }}</small>
-						<div class="mt-2">
-							<span class="badge" style="background:var(--tt-accent);color:var(--tt-dark);border-radius:50px;font-size:.72rem;">
-								{{ ucfirst($user->role) }}
-							</span>
-						</div>
-					</div>
-					<a href="{{ route('account.profile') }}" class="btn-tt-outline w-100 text-center d-block">
-						<i class="fas fa-user-edit me-2"></i>Edit Profile
-					</a>
 				</div>
 
-				{{-- Quick Actions --}}
-				<div class="tt-sidebar-card" data-aos="fade-left">
-					<h5 class="mb-3 fw-bold">Quick Actions</h5>
-					<div class="d-grid gap-2">
-						<a href="{{ route('packages') }}"
-						   style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--tt-cream);color:var(--tt-dark);text-decoration:none;font-size:.9rem;transition:.2s;">
-							<i class="fas fa-search" style="color:var(--tt-primary);width:16px;"></i>Browse Properties
-						</a>
-						<a href="{{ route('bookings.my') }}"
-						   style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--tt-cream);color:var(--tt-dark);text-decoration:none;font-size:.9rem;transition:.2s;">
-							<i class="fas fa-calendar-alt" style="color:var(--tt-primary);width:16px;"></i>My Bookings
-						</a>
-						<a href="{{ route('wishlist.index') }}"
-						   style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--tt-cream);color:var(--tt-dark);text-decoration:none;font-size:.9rem;transition:.2s;">
-							<i class="fas fa-heart" style="color:#ef4444;width:16px;"></i>Saved Properties
-						</a>
-						<a href="{{ route('account.profile') }}"
-						   style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--tt-cream);color:var(--tt-dark);text-decoration:none;font-size:.9rem;transition:.2s;">
-							<i class="fas fa-user-cog" style="color:var(--tt-primary);width:16px;"></i>Account Settings
-						</a>
-						<a href="{{ route('contact') }}"
-						   style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:var(--tt-cream);color:var(--tt-dark);text-decoration:none;font-size:.9rem;transition:.2s;">
-							<i class="fas fa-headset" style="color:var(--tt-primary);width:16px;"></i>Contact Support
-						</a>
-						@if(Auth::user()->isAdmin())
-						<hr class="my-1">
-						<a href="{{ route('home') }}"
-						   style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;background:#082B4C10;color:var(--tt-primary);text-decoration:none;font-size:.9rem;font-weight:600;">
-							<i class="fas fa-shield-halved" style="color:var(--tt-accent);width:16px;"></i>Admin Dashboard
-						</a>
-						@endif
+				{{-- Recent Reviews --}}
+				@php
+					$recentReviews = $user->reviews()->with('destination')->latest()->take(5)->get();
+				@endphp
+				<div class="tt-dash-box">
+					<div class="tt-dash-box-header">
+						<h5>Recent Reviews</h5>
+					</div>
+					<div class="table-responsive">
+						<table class="tt-dash-table">
+							<thead>
+								<tr>
+									<th>Property</th>
+									<th>Rating</th>
+									<th>Date</th>
+								</tr>
+							</thead>
+							<tbody>
+								@forelse($recentReviews as $review)
+								<tr>
+									<td>{{ Str::limit($review->destination->title ?? 'Property', 30) }}</td>
+									<td>{{ $review->rating }}/5</td>
+									<td>{{ $review->created_at->format('d M Y') }}</td>
+								</tr>
+								@empty
+								<tr>
+									<td colspan="3" class="text-muted">No reviews yet.</td>
+								</tr>
+								@endforelse
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

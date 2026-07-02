@@ -1,14 +1,14 @@
 @extends('layouts.front')
 
-@section('title', 'Sign In - France Vacances')
+@section('title', 'Login - France Vacances')
 
 @section('page')
 <div class="tt-auth-bg">
-    <div class="tt-auth-card" data-aos="fade-up">
+    <div class="tt-auth-card">
         <!-- Brand -->
         <div class="brand-icon"><i class="fas fa-house"></i></div>
         <h2>Welcome Back</h2>
-        <p class="subtitle">Sign in to manage your bookings</p>
+        <p class="subtitle">Login to manage your bookings</p>
 
         <form method="POST" action="{{ route('login') }}" class="tt-form">
             @csrf
@@ -47,7 +47,7 @@
             </div>
 
             <button type="submit" class="btn-tt-primary w-100 text-center d-block mb-3">
-                <i class="fas fa-sign-in-alt me-2"></i>Sign In
+                <i class="fas fa-sign-in-alt me-2"></i>Login
             </button>
 
             <div class="text-center my-3">
@@ -55,12 +55,12 @@
             </div>
 
             <a href="{{ route('register') }}" class="btn-tt-outline w-100 text-center d-block">
-                <i class="fas fa-user-plus me-2"></i>Create Account
+                <i class="fas fa-user-plus me-2"></i>Register
             </a>
         </form>
 
         <div class="text-center mt-4">
-            <small class="text-muted">&copy; {{ date('Y') }} France Vacances. Your perfect French holiday awaits.</small>
+            <small class="text-muted">&copy; {{ date('Y') }} France Vacances.</small>
         </div>
     </div>
 </div>

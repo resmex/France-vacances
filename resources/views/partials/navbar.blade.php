@@ -38,9 +38,13 @@
 						<a class="nav-link dropdown-toggle d-flex align-items-center gap-2 fw-semibold"
 						   href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<div class="user-avatar">
+								@if(Auth::user()->profile_photo)
+								<img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+								@else
 								<i class="fas fa-user"></i>
+								@endif
 							</div>
-							{{ Auth::user()->name }}
+							<span class="user-name-gold">{{ Auth::user()->name }}</span>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end shadow-sm border rounded-3 p-1">
 							<li class="px-3 py-2">
@@ -85,8 +89,8 @@
 					</div>
 					<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
 				@else
-					<a href="{{ route('login') }}" class="btn btn-sign-in">Sign In</a>
-					<a href="{{ route('register') }}" class="btn btn-get-started">Get Started</a>
+					<a href="{{ route('login') }}" class="btn btn-sign-in">Login</a>
+					<a href="{{ route('register') }}" class="btn btn-get-started">Register</a>
 				@endauth
 			</div>
 		</div>

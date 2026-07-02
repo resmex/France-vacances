@@ -7,8 +7,7 @@
 
 <!-- Page Hero -->
 <section class="tt-page-hero tt-page-hero-sm">
-	<div class="tt-page-hero-bg" style="background-image: url('{{ asset('images/place-1.jpg') }}');"></div>
-	<div class="container" data-aos="fade-up">
+	<div class="container">
 		<h1 class="tt-page-title">Your <span class="accent">Cart</span></h1>
 	</div>
 </section>
@@ -18,7 +17,7 @@
 	<div class="container">
 		<div class="row g-5">
 			<!-- Cart Items -->
-			<div class="col-lg-8" data-aos="fade-up">
+			<div class="col-lg-8">
 				<div class="tt-cart-table">
 					<div class="tt-cart-header d-none d-md-flex">
 						<div class="tt-cart-col-product">Product</div>
@@ -54,14 +53,14 @@
 				<!-- Cart Actions -->
 				<div class="d-flex flex-wrap justify-content-between align-items-center mt-4 gap-3">
 					<a href="{{ route('packages') }}" class="btn-tt-outline">
-						<i class="fas fa-arrow-left me-2"></i> Continue Shopping
+						<i class="fas fa-arrow-left me-2"></i> Back
 					</a>
 					<div class="d-flex gap-2">
 						<form action="{{ route('cart.remove', $id ?? '') }}" method="POST">
 							@csrf
 							@method('DELETE')
 							<button type="submit" class="btn-tt-outline" style="border-color:#dc3545;color:#dc3545;">
-								<i class="fas fa-trash me-1"></i> Clear Cart
+								<i class="fas fa-trash me-1"></i> Cancel
 							</button>
 						</form>
 					</div>
@@ -69,7 +68,7 @@
 			</div>
 
 			<!-- Order Summary -->
-			<div class="col-lg-4" data-aos="fade-left">
+			<div class="col-lg-4">
 				<div class="tt-sidebar-card">
 					<h5 class="mb-4"><i class="fas fa-receipt me-2"></i> Order Summary</h5>
 
@@ -99,7 +98,7 @@
 					</div>
 
 					<a href="{{ route('checkout') }}" class="btn-tt-primary w-100 text-center">
-						Proceed to Checkout <i class="fas fa-arrow-right ms-1"></i>
+						Next <i class="fas fa-arrow-right ms-1"></i>
 					</a>
 				</div>
 			</div>

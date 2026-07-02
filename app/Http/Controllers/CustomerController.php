@@ -8,6 +8,7 @@ use App\Review;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class CustomerController extends Controller
 {
@@ -70,9 +71,21 @@ class CustomerController extends Controller
         $user = Auth::user();
 
         $validated = $request->validate([
-            'name'  => ['required', 'string', 'max:100'],
-            'about' => ['nullable', 'string', 'max:500'],
+            'name'          => ['required', 'string', 'max:100'],
+            'about'         => ['nullable', 'string', 'max:500'],
+            'profile_photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
         ]);
+
+        if ($request->hasFile('profile_photo')) {
+            if ($user->profile_photo) {
+                Storage::disk('public')->delete($user->profile_photo);
+            }
+
+            $validated['profile_photo'] = $request->file('profile_photo')
+                ->store('profile_photos', 'public');
+        } else {
+            unset($validated['profile_photo']);
+        }
 
         $user->update($validated);
 

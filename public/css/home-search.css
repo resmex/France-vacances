@@ -1,0 +1,120 @@
+/* ============================================
+   HOME PAGE — BOOKING-STYLE SEARCH BAR
+   Only used on the homepage
+   ============================================ */
+
+/* Search bar section — plain box below the hero, not floating */
+.tt-booking-section {
+    background: var(--tt-cream);
+    padding: 2rem 0;
+}
+
+.tt-booking-bar {
+    padding: 0;
+    overflow: hidden;
+}
+
+.tt-booking-row {
+    display: flex;
+    align-items: stretch;
+}
+
+.tt-booking-field {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .9rem 1.25rem;
+}
+
+.tt-booking-icon {
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: var(--tt-accent-light);
+    color: var(--tt-accent-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .9rem;
+}
+
+.tt-booking-field label {
+    display: block;
+    font-size: .7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--tt-text-muted);
+    margin-bottom: .15rem;
+}
+
+.tt-booking-field input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0;
+    font-family: var(--tt-font);
+    font-size: .92rem;
+    color: var(--tt-text);
+    background: transparent;
+}
+
+.tt-booking-field input::placeholder {
+    color: var(--tt-text-muted);
+}
+
+.tt-booking-divider {
+    width: 1px;
+    background: var(--tt-border);
+    margin: .75rem 0;
+    flex-shrink: 0;
+}
+
+.tt-booking-search-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    flex-shrink: 0;
+    border: none;
+    background: var(--tt-primary);
+    color: #fff;
+    font-family: var(--tt-font);
+    font-weight: 600;
+    font-size: .9rem;
+    padding: 0 1.75rem;
+    cursor: pointer;
+    transition: background var(--tt-transition);
+}
+
+.tt-booking-search-btn:hover {
+    background: var(--tt-primary-dark);
+}
+
+@media (max-width: 767.98px) {
+    .tt-booking-section {
+        padding: 1.5rem 0;
+    }
+
+    .tt-booking-row {
+        flex-direction: column;
+    }
+
+    .tt-booking-field {
+        padding: .75rem 1.25rem;
+    }
+
+    .tt-booking-divider {
+        width: auto;
+        height: 1px;
+        margin: 0 1.25rem;
+    }
+
+    .tt-booking-search-btn {
+        padding: .85rem;
+        width: 100%;
+    }
+}

@@ -28,7 +28,7 @@
 
             <button type="submit" class="btn-admin-primary">
                 <i class="fas fa-save me-1"></i>
-                {{ isset($tag) ? 'Update Tag' : 'Add Tag' }}
+                {{ isset($tag) ? 'Update' : 'Save' }}
             </button>
         </form>
     </div>

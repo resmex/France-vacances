@@ -8,14 +8,14 @@
 <section class="tt-section" style="min-height:70vh;display:flex;align-items:center;">
 	<div class="container" style="max-width:780px;">
 		<!-- Confirmation Header -->
-		<div class="text-center mb-5" data-aos="fade-up">
-			<div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,#22c55e,#16a34a);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;box-shadow:0 8px 24px rgba(34,197,94,.35);">
+		<div class="text-center mb-5">
+			<div style="width:80px;height:80px;border-radius:50%;background:#22c55e;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
 				<i class="fas fa-check" style="font-size:2rem;color:#fff;"></i>
 			</div>
-			<h1 class="fw-bold" style="font-size:2rem;color:var(--tt-primary);">Booking Confirmed!</h1>
+			<h1 class="fw-bold" style="font-size:2rem;color:var(--tt-primary);">Thank You for Your Booking</h1>
 			<p class="lead text-muted">
-				Thank you, {{ Auth::user()->name }}. Your stay at
-				<strong>{{ $booking->destination->title }}</strong> is secured.
+				{{ Auth::user()->name }}, your stay at
+				<strong>{{ $booking->destination->title }}</strong> is booked.
 			</p>
 			@if($booking->payment)
 			<span class="badge py-2 px-3" style="background:var(--tt-accent);color:var(--tt-dark);font-size:.85rem;border-radius:50px;">
@@ -25,7 +25,7 @@
 		</div>
 
 		<!-- Booking Details Card -->
-		<div class="tt-sidebar-card mb-4" data-aos="fade-up">
+		<div class="tt-sidebar-card mb-4">
 			<div class="row g-0">
 				<div class="col-md-4">
 					<img src="{{ $booking->destination->image_url }}"
@@ -72,7 +72,7 @@
 		</div>
 
 		<!-- Payment Summary -->
-		<div class="tt-sidebar-card mb-4" data-aos="fade-up">
+		<div class="tt-sidebar-card mb-4">
 			<h5 class="mb-3"><i class="fas fa-receipt me-2" style="color:var(--tt-accent);"></i>Payment Summary</h5>
 			<div class="tt-info-list">
 				<div class="tt-info-row">
@@ -109,7 +109,7 @@
 		</div>
 
 		<!-- What Happens Next -->
-		<div class="tt-sidebar-card mb-4" data-aos="fade-up">
+		<div class="tt-sidebar-card mb-4">
 			<h5 class="mb-3"><i class="fas fa-list-check me-2" style="color:var(--tt-accent);"></i>What Happens Next</h5>
 			<div class="d-flex gap-3 mb-3">
 				<div style="min-width:32px;height:32px;border-radius:50%;background:var(--tt-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;">1</div>
@@ -121,39 +121,30 @@
 			<div class="d-flex gap-3 mb-3">
 				<div style="min-width:32px;height:32px;border-radius:50%;background:var(--tt-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;">2</div>
 				<div>
-					<strong>Property information pack</strong>
-					<p class="mb-0 text-muted small">We'll send arrival details, key codes, and local tips 2 weeks before your check-in.</p>
+					<strong>Property information</strong>
+					<p class="mb-0 text-muted small">We will send arrival details and key codes 2 weeks before your check-in.</p>
 				</div>
 			</div>
 			<div class="d-flex gap-3">
 				<div style="min-width:32px;height:32px;border-radius:50%;background:var(--tt-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;">3</div>
 				<div>
-					<strong>Enjoy your French holiday!</strong>
-					<p class="mb-0 text-muted small">Our UK team is available Mon–Fri 9AM–5:30PM if you need anything before or during your stay.</p>
+					<strong>Enjoy your holiday</strong>
+					<p class="mb-0 text-muted small">Our team is available Mon–Fri 9AM–5:30PM if you need help before or during your stay.</p>
 				</div>
 			</div>
 		</div>
 
 		<!-- Action Buttons -->
-		<div class="d-flex flex-wrap gap-3 justify-content-center" data-aos="fade-up">
+		<div class="d-flex flex-wrap gap-3 justify-content-center">
 			<a href="{{ route('bookings.my') }}" class="btn-tt-primary">
 				<i class="fas fa-calendar-alt me-2"></i>View My Bookings
 			</a>
 			<a href="{{ route('packages') }}" class="btn-tt-outline">
-				<i class="fas fa-search me-2"></i>Browse More Properties
+				<i class="fas fa-search me-2"></i>View More Properties
 			</a>
 			<a href="{{ route('contact') }}" class="btn-tt-outline">
 				<i class="fas fa-headset me-2"></i>Contact Us
 			</a>
-		</div>
-
-		<!-- ABTA Footer -->
-		<div class="text-center mt-5" data-aos="fade-up">
-			<div class="d-inline-flex align-items-center gap-2 px-4 py-2 rounded-3"
-				 style="background:var(--tt-cream);font-size:.85rem;color:var(--tt-dark-soft);">
-				<i class="fas fa-shield-alt" style="color:var(--tt-accent);"></i>
-				<span>ABTA Protected Booking — France Vacances Ltd &nbsp;·&nbsp; 12 Regent Street, London W1B 5JG</span>
-			</div>
 		</div>
 	</div>
 </section>

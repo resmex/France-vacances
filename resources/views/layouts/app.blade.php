@@ -54,9 +54,13 @@
                             <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center gap-2" href="#"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <span class="admin-user-avatar">
+                                    @if(Auth::user()->profile_photo)
+                                    <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+                                    @else
                                     <i class="fas fa-user"></i>
+                                    @endif
                                 </span>
-                                {{ Auth::user()->name }}
+                                <span class="admin-user-name-gold">{{ Auth::user()->name }}</span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end">
                                 <a class="dropdown-item" href="{{ route('users.edit-profile') }}">
@@ -97,82 +101,59 @@
             </div>
         @endif
 
+        <button class="admin-sidebar-toggle d-md-none" type="button" id="sidebarToggle">
+            <i class="fas fa-bars"></i> Menu
+        </button>
+
         <div class="row g-4 mt-0">
             <!-- Sidebar -->
             <div class="col-lg-2 col-md-3">
-                <div class="admin-sidebar">
-                    <div class="admin-sidebar-header">
-                        <div class="icon-circle"><i class="fas fa-shield-halved"></i></div>
-                        <h6>Admin Panel</h6>
-                        <small>Manage platform</small>
-                    </div>
-
+                <div class="admin-sidebar" id="adminSidebar">
                     @php $authUser = auth()->user(); @endphp
-                    <div class="admin-sidebar-label">Main</div>
+
+                    <div class="admin-nav-group">Main</div>
                     <a href="{{ route('home') }}" class="admin-nav-item {{ request()->routeIs('home') ? 'active' : '' }}">
-                        <i class="fas fa-chart-pie"></i> Dashboard
+                        <i class="fas fa-gauge-high"></i> Dashboard
                     </a>
 
                     @if ($authUser->isAdmin())
-                    <a href="{{ route('users.index') }}" class="admin-nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
-                        <i class="fas fa-users"></i> Users
+                    <div class="admin-nav-group">Sales &amp; Operations</div>
+                    <a href="{{ route('bookings.index') }}" class="admin-nav-item {{ request()->routeIs('bookings.*') ? 'active' : '' }}">
+                        <i class="fas fa-calendar-check"></i> Bookings
                     </a>
-                    @endif
-
-                    @if($authUser->isAdmin())
-                    <div class="admin-sidebar-label">Content</div>
                     <a href="{{ route('destinations.index') }}" class="admin-nav-item {{ request()->routeIs('destinations.*') ? 'active' : '' }}">
-                        <i class="fas fa-home"></i> Properties
+                        <i class="fas fa-house"></i> Properties
                     </a>
-                    <a href="{{ route('categories.index') }}" class="admin-nav-item {{ request()->routeIs('categories.*') ? 'active' : '' }}">
-                        <i class="fas fa-folder"></i> Categories
+                    <a href="{{ route('users.index') }}" class="admin-nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                        <i class="fas fa-users"></i> Customers
                     </a>
-                    <a href="{{ route('tags.index') }}" class="admin-nav-item {{ request()->routeIs('tags.*') ? 'active' : '' }}">
-                        <i class="fas fa-hashtag"></i> Tags
-                    </a>
+
+                    <div class="admin-nav-group">Content</div>
                     <a href="{{ route('blog.index') }}" class="admin-nav-item {{ request()->routeIs('blog.*') ? 'active' : '' }}">
                         <i class="fas fa-newspaper"></i> Blog Posts
                     </a>
+                    <a href="{{ route('categories.index') }}" class="admin-nav-item {{ request()->routeIs('categories.*') ? 'active' : '' }}">
+                        <i class="fas fa-map"></i> Categories (Regions)
+                    </a>
+                    <a href="{{ route('tags.index') }}" class="admin-nav-item {{ request()->routeIs('tags.*') ? 'active' : '' }}">
+                        <i class="fas fa-tag"></i> Tags
+                    </a>
 
-                    <div class="admin-sidebar-label">Bookings</div>
-                    <a href="{{ route('bookings.index') }}" class="admin-nav-item {{ request()->routeIs('bookings.*') ? 'active' : '' }}">
-                        <i class="fas fa-calendar-alt"></i> Bookings
+                    <div class="admin-nav-group">Administration</div>
+                    <a href="{{ route('users.index') }}" class="admin-nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
+                        <i class="fas fa-user-gear"></i> Users
                     </a>
                     <a href="{{ route('payments.index') }}" class="admin-nav-item {{ request()->routeIs('payments.*') ? 'active' : '' }}">
-                        <i class="fas fa-receipt"></i> Payments
+                        <i class="fas fa-credit-card"></i> Payments
                     </a>
                     <a href="{{ route('reports.index') }}" class="admin-nav-item {{ request()->routeIs('reports.*') ? 'active' : '' }}">
                         <i class="fas fa-chart-bar"></i> Reports
                     </a>
                     @endif
 
-                    @if($authUser->isAdmin() || $authUser->isOwner() || $authUser->isFinance() || $authUser->isIt())
-                    <div class="admin-sidebar-label">Portals</div>
-                    @if($authUser->isAdmin() || $authUser->isOwner())
-                    <a href="{{ route('owner.dashboard') }}" class="admin-nav-item {{ request()->routeIs('owner.*') ? 'active' : '' }}">
-                        <i class="fas fa-key"></i> Owner Portal
-                    </a>
-                    @endif
-                    @if($authUser->isAdmin() || $authUser->isFinance())
-                    <a href="{{ route('finance.dashboard') }}" class="admin-nav-item {{ request()->routeIs('finance.*') ? 'active' : '' }}">
-                        <i class="fas fa-sterling-sign"></i> Finance Portal
-                    </a>
-                    @endif
-                    @if($authUser->isAdmin() || $authUser->isIt())
-                    <a href="{{ route('it.dashboard') }}" class="admin-nav-item {{ request()->routeIs('it.*') ? 'active' : '' }}">
-                        <i class="fas fa-server"></i> IT Portal
-                    </a>
-                    @endif
-                    @endif
-
-                    <div class="admin-nav-divider"></div>
-                    <a href="{{ route('trashed-destinations.index') }}" class="admin-nav-item {{ request()->routeIs('trashed-destinations.*') ? 'active' : '' }}">
-                        <i class="fas fa-trash-restore"></i> Trashed
-                    </a>
-
                     <div class="admin-nav-divider"></div>
                     <a href="{{ url('/') }}" class="admin-nav-item">
-                        <i class="fas fa-arrow-left"></i> Back to Site
+                        <i class="fas fa-arrow-left"></i> Back to Website
                     </a>
                 </div>
             </div>
@@ -200,6 +181,15 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var sidebarToggle = document.getElementById('sidebarToggle');
+        var adminSidebar  = document.getElementById('adminSidebar');
+        if (sidebarToggle && adminSidebar) {
+            sidebarToggle.addEventListener('click', function () {
+                adminSidebar.classList.toggle('admin-sidebar-open');
+            });
+        }
+    </script>
     @yield('scripts')
 </body>
 

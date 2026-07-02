@@ -4,7 +4,7 @@
 
 @section('page')
 <div class="tt-auth-bg">
-    <div class="tt-auth-card" data-aos="fade-up">
+    <div class="tt-auth-card">
         <!-- Brand -->
         <div class="brand-icon"><i class="fas fa-envelope-open-text"></i></div>
         <h2>Verify Your Email</h2>
@@ -36,7 +36,7 @@
         </div>
 
         <div class="text-center mt-4">
-            <small class="text-muted">&copy; {{ date('Y') }} France Vacances. Secure email verification.</small>
+            <small class="text-muted">&copy; {{ date('Y') }} France Vacances.</small>
         </div>
     </div>
 </div>

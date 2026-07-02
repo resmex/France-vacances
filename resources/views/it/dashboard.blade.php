@@ -2,7 +2,7 @@
 
 @section('content')
 <!-- Header -->
-<div class="admin-welcome" style="background:linear-gradient(135deg,#1e1b4b 0%,#312e81 100%);">
+<div class="admin-welcome" style="background:#312e81;">
     <div class="row align-items-center">
         <div class="col-md-8">
             <h2><i class="fas fa-server me-2" style="color:#a5b4fc;"></i> IT &amp; Infrastructure Portal</h2>

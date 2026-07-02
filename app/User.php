@@ -23,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'about', 'role',
+        'name', 'email', 'password', 'about', 'role', 'profile_photo',
     ];
 
     /**
@@ -108,6 +108,11 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Destinations::class, 'wishlists', 'user_id', 'destination_id')
             ->withTimestamps();
+    }
+
+    public function getProfilePhotoUrlAttribute(): ?string
+    {
+        return $this->profile_photo ? asset('storage/'.$this->profile_photo) : null;
     }
 
     public function hasWishlisted(Destinations $destination): bool

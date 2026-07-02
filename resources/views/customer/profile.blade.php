@@ -6,9 +6,8 @@
 @include('partials.navbar')
 
 <!-- Page Hero -->
-<section class="tt-page-hero tt-page-hero-sm">
-	<div class="tt-page-hero-bg" style="background-image: url('{{ asset('images/bg_1.jpg') }}');"></div>
-	<div class="container" data-aos="fade-up">
+<section class="tt-page-hero tt-page-hero-sm" style="background-image:url('{{ asset('images/about.jpg') }}');">
+	<div class="container">
 		<h1 class="tt-page-title">Account Settings</h1>
 		<p class="tt-page-subtitle">Update your personal details and change your password.</p>
 	</div>
@@ -36,13 +35,33 @@
 				@endif
 
 				<!-- Profile Details -->
-				<div class="tt-sidebar-card mb-4" data-aos="fade-up">
+				<div class="tt-sidebar-card mb-4">
 					<h5 class="fw-bold mb-4">
 						<i class="fas fa-user-edit me-2" style="color:var(--tt-accent);"></i>Personal Details
 					</h5>
-					<form action="{{ route('account.profile.update') }}" method="POST">
+					<form action="{{ route('account.profile.update') }}" method="POST" enctype="multipart/form-data">
 						@csrf
 						@method('PUT')
+						<div class="mb-4">
+							<label class="form-label fw-semibold">Profile Photo</label>
+							<div class="d-flex align-items-center gap-3">
+								<div class="tt-profile-photo-preview">
+									@if($user->profile_photo)
+									<img src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}">
+									@else
+									<i class="fas fa-user"></i>
+									@endif
+								</div>
+								<div class="flex-grow-1">
+									<input type="file" name="profile_photo" id="profile_photo"
+										   class="tt-input @error('profile_photo') is-invalid @enderror" accept=".jpg,.jpeg,.png">
+									<div class="form-text text-muted">JPG or PNG, max 2MB.</div>
+									@error('profile_photo')
+									<div class="invalid-feedback d-block">{{ $message }}</div>
+									@enderror
+								</div>
+							</div>
+						</div>
 						<div class="mb-3">
 							<label class="form-label fw-semibold" for="name">Full Name <span class="text-danger">*</span></label>
 							<input type="text" name="name" id="name" class="tt-input @error('name') is-invalid @enderror"
@@ -66,7 +85,7 @@
 						</div>
 						<div class="d-flex gap-3">
 							<button type="submit" class="btn-tt-primary">
-								<i class="fas fa-save me-2"></i>Save Changes
+								<i class="fas fa-save me-2"></i>Save
 							</button>
 							<a href="{{ route('account.dashboard') }}" class="btn-tt-outline">Cancel</a>
 						</div>
@@ -74,7 +93,7 @@
 				</div>
 
 				<!-- Change Password -->
-				<div class="tt-sidebar-card" data-aos="fade-up">
+				<div class="tt-sidebar-card">
 					<h5 class="fw-bold mb-4">
 						<i class="fas fa-lock me-2" style="color:var(--tt-accent);"></i>Change Password
 					</h5>

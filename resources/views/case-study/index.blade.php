@@ -5,17 +5,11 @@
 @section('page')
 @include('partials.navbar')
 
-<section class="tt-page-hero">
-    <div class="tt-page-hero-bg" style="background-image:url('{{ asset('images/bg_1.jpg') }}');"></div>
-    <div class="container" data-aos="fade-up">
-        <div class="mb-3">
-            <span style="background:var(--tt-accent);color:var(--tt-dark);padding:4px 14px;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;">
-                Technical Case Study
-            </span>
-        </div>
+<section class="tt-page-hero" style="background-image:url('{{ asset('images/bg_3.jpg') }}');">
+    <div class="container">
         <h1 class="tt-page-title">France Vacances<br><span class="accent">System Documentation</span></h1>
         <p class="tt-page-subtitle">
-            A comprehensive case study of the France Vacances self-catering holiday platform — covering
+            A case study of the France Vacances holiday booking platform, covering
             system architecture, security design, and hosting infrastructure.
         </p>
     </div>
@@ -25,8 +19,7 @@
 <section class="tt-section">
     <div class="container">
         <div class="row g-4 align-items-center mb-5">
-            <div class="col-lg-6" data-aos="fade-right">
-                <div class="tt-pretitle">About This Case Study</div>
+            <div class="col-lg-6">
                 <h2 class="tt-title">A Full-Stack Laravel 11<br><span class="accent">Holiday Platform</span></h2>
                 <p class="tt-body-text">
                     France Vacances is a fully functional self-catering holiday rental system built on
@@ -46,7 +39,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="col-lg-6" data-aos="fade-left">
+            <div class="col-lg-6">
                 <div class="tt-sidebar-card" style="background:var(--tt-primary);color:#fff;">
                     <h5 style="color:var(--tt-accent);margin-bottom:1.25rem;font-family:'Playfair Display',serif;">Platform at a Glance</h5>
                     @foreach([
@@ -56,7 +49,7 @@
                         ['fas fa-credit-card',   'Simulated Payments',            'No real gateway — demo safe'],
                         ['fas fa-code',          'REST API',                      '/api/v1/destinations with JSON'],
                         ['fas fa-cloud',         'Cloud Deployed',                'Railway with nixpacks auto-build'],
-                        ['fas fa-shield-halved', 'ABTA & Security',              'CSRF, XSS, bcrypt, FormRequests'],
+                        ['fas fa-shield-halved', 'Security',                     'CSRF, XSS, bcrypt, FormRequests'],
                         ['fas fa-heart',         'Wishlist & Reviews',           'Customer engagement features'],
                     ] as [$icon, $title, $sub])
                     <div class="d-flex align-items-center gap-3 py-2 border-bottom border-white border-opacity-10">
@@ -72,8 +65,7 @@
         </div>
 
         <!-- Three Case Study Cards -->
-        <div class="tt-section-header text-center mb-4" data-aos="fade-up">
-            <div class="tt-pretitle">Three Technical Deep-Dives</div>
+        <div class="tt-section-header text-center mb-4">
             <h2 class="tt-title">Case Study <span class="accent">Chapters</span></h2>
         </div>
 
@@ -114,7 +106,7 @@
             @endphp
 
             @foreach($chapters as $ch)
-            <div class="col-lg-4" data-aos="fade-up" data-aos-delay="{{ $loop->index * 100 }}">
+            <div class="col-lg-4">
                 <div class="tt-sidebar-card h-100" style="border-top:4px solid {{ $ch['colour'] }};padding:2rem;">
                     <div style="display:flex;align-items:center;gap:14px;margin-bottom:1.5rem;">
                         <div style="width:52px;height:52px;border-radius:14px;background:{{ $ch['colour'] }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">

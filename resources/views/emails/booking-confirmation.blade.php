@@ -6,7 +6,7 @@
     <title>Booking Confirmed — France Vacances</title>
     <style>
         body { font-family: 'Helvetica Neue', Arial, sans-serif; background:#f8f5ef; margin:0; padding:0; color:#1f2937; }
-        .wrapper { max-width:600px; margin:40px auto; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 4px 24px rgba(0,0,0,.08); }
+        .wrapper { max-width:600px; margin:40px auto; background:#fff; border-radius:12px; overflow:hidden; border:1px solid #e5e7eb; box-shadow:0 2px 8px rgba(0,0,0,.05); }
         .header { background:#082B4C; padding:32px 40px; text-align:center; }
         .header h1 { color:#fff; margin:0; font-size:22px; font-weight:700; letter-spacing:-.3px; }
         .header p { color:#D4AF37; margin:4px 0 0; font-size:13px; }
@@ -48,7 +48,7 @@
 
     <div class="body">
         <p>Dear {{ $booking->user->name ?? 'Guest' }},</p>
-        <p>Thank you for booking with France Vacances. Your holiday is secured and we're looking forward to welcoming you.</p>
+        <p>Thank you for your booking. Here are your booking details.</p>
 
         <div class="ref-badge">
             <div class="label">Booking Reference</div>
@@ -92,14 +92,12 @@
             <div class="step"><div class="num">3</div><span>Our UK team is available Mon–Fri 9AM–5:30PM on +44 20 7946 0123 if you have any questions.</span></div>
         </div>
 
-        <p style="font-size:13px;color:#6b7280;">This booking is ABTA protected. In the unlikely event of any issues, you are financially protected. Full details are available on our website.</p>
     </div>
 
     <div class="footer">
-        <p><strong>France Vacances Ltd</strong> &nbsp;·&nbsp; 12 Regent Street, London W1B 5JG</p>
+        <p><strong>France Vacances</strong> &nbsp;·&nbsp; 12 Regent Street, London W1B 5JG</p>
         <p>+44 20 7946 0123 &nbsp;·&nbsp; <a href="mailto:info@francevacances.co.uk">info@francevacances.co.uk</a></p>
-        <p style="margin-top:8px;">ABTA Protected &nbsp;·&nbsp; Company No. 12345678 (England &amp; Wales)</p>
-        <p style="margin-top:4px;font-size:11px;">This is a demonstration system. No real payment has been processed.</p>
+        <p style="margin-top:8px;font-size:11px;">This is a demonstration system. No real payment has been processed.</p>
     </div>
 </div>
 </body>

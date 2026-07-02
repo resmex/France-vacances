@@ -4,7 +4,7 @@
 
 @section('page')
 <div class="tt-auth-bg">
-    <div class="tt-auth-card" data-aos="fade-up">
+    <div class="tt-auth-card">
         <div class="brand-icon"><i class="fas fa-lock-open"></i></div>
         <h2>Reset Password</h2>
         <p class="subtitle">Enter your new password below</p>
@@ -44,7 +44,7 @@
                        placeholder="Confirm your new password">
             </div>
 
-            <button type="submit" class="tt-btn-primary">
+            <button type="submit" class="btn-tt-primary w-100 text-center d-block">
                 <i class="fas fa-check-circle me-2"></i>Reset Password
             </button>
         </form>

@@ -71,7 +71,7 @@
 
             <button type="submit" class="btn-admin-primary">
                 <i class="fas fa-save me-1"></i>
-                {{ isset($blog) ? 'Update Blog' : 'Create Blog' }}
+                {{ isset($blog) ? 'Update' : 'Save' }}
             </button>
         </form>
     </div>

@@ -21,10 +21,9 @@
 @section('page')
 @include('partials.navbar')
 
-<section class="tt-page-hero tt-page-hero-sm">
-    <div class="tt-page-hero-bg" style="background-image:url('{{ asset('images/place-2.jpg') }}');"></div>
-    <div class="container" data-aos="fade-up">
-        <span style="background:var(--tt-accent);color:var(--tt-dark);padding:4px 14px;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;">Chapter 01</span>
+<section class="tt-page-hero tt-page-hero-sm" style="background-image:url('{{ asset('images/image_1.jpg') }}');">
+    <div class="container">
+        <span style="background:var(--tt-accent);color:var(--tt-dark);padding:4px 14px;border-radius:8px;font-size:.75rem;font-weight:700;text-transform:uppercase;">Chapter 01</span>
         <h1 class="tt-page-title mt-2">System <span class="accent">Integration</span></h1>
         <p class="tt-page-subtitle">Architecture, data flow, and how every layer of France Vacances connects.</p>
     </div>
@@ -37,7 +36,7 @@
             <div class="col-lg-8">
 
                 <!-- MVC Architecture -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">MVC Architecture</h2>
                     <p>France Vacances follows Laravel's Model-View-Controller pattern. Each layer has a single responsibility:</p>
 
@@ -76,7 +75,7 @@
                 </div>
 
                 <!-- Database Schema -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">Database Schema</h2>
                     <p>The platform uses <strong>MySQL 8</strong> with 17 migrations. Key entities and their relationships:</p>
 
@@ -122,7 +121,7 @@
                 </div>
 
                 <!-- Booking Flow -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">Booking Flow</h2>
                     <p>The end-to-end booking journey from homepage to confirmation email:</p>
 
@@ -144,7 +143,7 @@
                 </div>
 
                 <!-- REST API -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">REST API</h2>
                     <p>A public JSON API is available at <code>/api/v1/</code> for headless or third-party integrations:</p>
 
@@ -182,7 +181,7 @@
                 </div>
 
                 <!-- Email System -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">Email Notifications</h2>
                     <p>Laravel's <strong>Mailable</strong> class handles booking confirmation emails with inline-CSS HTML templates for maximum email client compatibility.</p>
                     <div class="cs-code">
@@ -204,7 +203,7 @@
 
             <!-- Sidebar TOC -->
             <div class="col-lg-4">
-                <div class="tt-sidebar-card" style="position:sticky;top:90px;" data-aos="fade-left">
+                <div class="tt-sidebar-card" style="position:sticky;top:90px;">
                     <h6 class="fw-bold mb-3" style="color:var(--tt-primary);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;">Contents</h6>
                     @foreach([
                         ['MVC Architecture', '#'],

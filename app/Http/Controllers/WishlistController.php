@@ -29,7 +29,7 @@ class WishlistController extends Controller
 
         return response()->json([
             'wishlisted' => $isWishlisted,
-            'message' => $isWishlisted ? 'Added to wishlist' : 'Removed from wishlist',
+            'message' => $isWishlisted ? 'Property saved.' : 'Property removed from saved properties.',
         ]);
     }
 
@@ -39,7 +39,7 @@ class WishlistController extends Controller
             auth()->user()->wishlist()->create([
                 'destination_id' => $destination->id,
             ]);
-            session()->flash('success', 'Added to wishlist');
+            session()->flash('success', 'Property saved.');
         }
 
         return redirect()->back();
@@ -51,7 +51,7 @@ class WishlistController extends Controller
             ->where('destination_id', $destination->id)
             ->delete();
 
-        session()->flash('success', 'Removed from wishlist');
+        session()->flash('success', 'Property removed from saved properties.');
 
         return redirect()->back();
     }

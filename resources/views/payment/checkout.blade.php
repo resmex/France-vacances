@@ -6,8 +6,7 @@
 @include('partials.navbar')
 
 <section class="tt-page-hero tt-page-hero-sm">
-	<div class="tt-page-hero-bg" style="background-image: url('{{ $booking->destination->image_url }}');"></div>
-	<div class="container" data-aos="fade-up">
+	<div class="container">
 		<h1 class="tt-page-title">Complete Your <span class="accent">Booking</span></h1>
 	</div>
 </section>
@@ -23,7 +22,7 @@
 		<div class="row g-4">
 			<!-- Payment Form -->
 			<div class="col-lg-7">
-				<div class="tt-sidebar-card" data-aos="fade-up">
+				<div class="tt-sidebar-card">
 					<div class="d-flex align-items-center gap-3 mb-4">
 						<div class="tt-info-icon"><i class="fas fa-lock"></i></div>
 						<div>
@@ -84,13 +83,11 @@
 
 						<button type="submit" class="btn-tt-primary w-100 py-3" id="pay-btn" style="font-size:1.05rem;">
 							<i class="fas fa-lock me-2"></i>
-							Pay {{ $booking->total_display }} — Confirm Booking
+							Pay {{ $booking->total_display }} and Book Now
 						</button>
 
 						<p class="text-center mt-3 mb-0" style="font-size:.8rem;color:var(--tt-dark-soft);">
-							<i class="fas fa-shield-alt me-1" style="color:var(--tt-accent);"></i>
-							ABTA Protected &nbsp;·&nbsp;
-							<i class="fas fa-lock me-1"></i> 256-bit SSL &nbsp;·&nbsp;
+							<i class="fas fa-lock me-1"></i> Secure payment &nbsp;·&nbsp;
 							Free cancellation up to 8 weeks before arrival
 						</p>
 					</form>
@@ -99,7 +96,7 @@
 
 			<!-- Booking Summary -->
 			<div class="col-lg-5">
-				<div class="tt-sidebar-card" data-aos="fade-left" style="position:sticky;top:90px;">
+				<div class="tt-sidebar-card" style="position:sticky;top:90px;">
 					<h5 class="mb-3">Booking Summary</h5>
 					<img src="{{ $booking->destination->image_url }}"
 						 alt="{{ $booking->destination->title }}"

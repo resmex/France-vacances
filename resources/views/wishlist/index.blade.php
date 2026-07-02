@@ -6,11 +6,10 @@
 @include('partials.navbar')
 
 <!-- Page Hero -->
-<section class="tt-page-hero tt-page-hero-sm">
-	<div class="tt-page-hero-bg" style="background-image: url('{{ asset('images/bg_1.jpg') }}');"></div>
-	<div class="container" data-aos="fade-up">
+<section class="tt-page-hero tt-page-hero-sm" style="background-image:url('{{ asset('images/destination-2.jpg') }}');">
+	<div class="container">
 		<h1 class="tt-page-title">Saved Properties</h1>
-		<p class="tt-page-subtitle">Your saved properties — {{ $wishlisted->total() }} {{ Str::plural('property', $wishlisted->total()) }}</p>
+		<p class="tt-page-subtitle">{{ $wishlisted->total() }} {{ Str::plural('property', $wishlisted->total()) }} saved</p>
 	</div>
 </section>
 
@@ -28,30 +27,18 @@
 				<i class="fas fa-heart fa-2x" style="color:#ef444440;"></i>
 			</div>
 			<h3 class="fw-bold mb-3">Your wishlist is empty</h3>
-			<p class="text-muted mb-4">Browse our French holiday properties and click the ♡ to save your favourites here.</p>
-			<a href="{{ route('packages') }}" class="btn-tt-primary">Browse Properties</a>
+			<p class="text-muted mb-4">Browse our holiday properties and click the heart icon to save one here.</p>
+			<a href="{{ route('packages') }}" class="btn-tt-primary">View Properties</a>
 		</div>
 		@else
 		<div class="row g-4" id="wishlist-grid">
 			@foreach($wishlisted as $destination)
-			<div class="col-md-6 col-lg-4" data-aos="fade-up" id="card-{{ $destination->id }}">
+			<div class="col-md-6 col-lg-4" id="card-{{ $destination->id }}">
 				<div class="tt-property-card">
 					<!-- Image -->
 					<div class="tt-property-image">
 						<img src="{{ $destination->image_url }}" alt="{{ $destination->title }}" loading="lazy">
 						<div class="tt-property-badge">{{ $destination->property_type_label }}</div>
-						<!-- Remove from wishlist -->
-						<form action="{{ route('wishlist.destroy', $destination->id) }}" method="POST"
-							  class="position-absolute" style="top:12px;right:12px;">
-							@csrf
-							@method('DELETE')
-							<button type="submit"
-									title="Remove from wishlist"
-									style="width:36px;height:36px;border-radius:50%;border:none;background:#fff;color:#ef4444;font-size:1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.15);"
-									onclick="return confirm('Remove {{ $destination->title }} from your wishlist?')">
-								<i class="fas fa-heart"></i>
-							</button>
-						</form>
 					</div>
 					<!-- Card Body -->
 					<div class="tt-property-body">
@@ -75,9 +62,10 @@
 						<div class="tt-property-footer">
 							<div class="tt-property-price">{{ $destination->price_display }}</div>
 							<a href="{{ route('desti.show', $destination->id) }}" class="btn-tt-primary py-2 px-4" style="font-size:.85rem;">
-								View Property
+								View Details
 							</a>
 						</div>
+						@include('partials.wishlist-save-button', ['destination' => $destination])
 					</div>
 				</div>
 			</div>
@@ -93,7 +81,7 @@
 
 		<div class="text-center mt-4">
 			<a href="{{ route('packages') }}" class="btn-tt-outline">
-				<i class="fas fa-search me-2"></i>Browse More Properties
+				<i class="fas fa-search me-2"></i>View More Properties
 			</a>
 		</div>
 		@endif

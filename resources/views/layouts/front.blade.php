@@ -23,11 +23,8 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-    <!-- AOS (animations) -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-
-    <!-- Unified Theme -->
-    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
+    <!-- Theme -->
+    <link rel="stylesheet" href="{{ asset('css/theme.css') }}?v={{ filemtime(public_path('css/theme.css')) }}">
 
     @stack('styles')
 </head>
@@ -46,20 +43,6 @@
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <!-- AOS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-    <script>
-        // Init AOS
-        AOS.init({ duration: 800, easing: 'ease-out', once: true, offset: 60 });
-
-        // Navbar scroll class
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.tt-navbar');
-            if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
-        });
-    </script>
 
     @stack('scripts')
 </body>

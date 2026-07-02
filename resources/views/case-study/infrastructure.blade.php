@@ -22,12 +22,11 @@
 @section('page')
 @include('partials.navbar')
 
-<section class="tt-page-hero tt-page-hero-sm">
-    <div class="tt-page-hero-bg" style="background-image:url('{{ asset('images/place-4.jpg') }}');filter:hue-rotate(240deg);"></div>
-    <div class="container" data-aos="fade-up">
-        <span style="background:#818cf8;color:#fff;padding:4px 14px;border-radius:50px;font-size:.75rem;font-weight:700;text-transform:uppercase;">Chapter 03</span>
+<section class="tt-page-hero tt-page-hero-sm" style="background-image:url('{{ asset('images/image_3.jpg') }}');">
+    <div class="container">
+        <span style="background:#818cf8;color:#fff;padding:4px 14px;border-radius:8px;font-size:.75rem;font-weight:700;text-transform:uppercase;">Chapter 03</span>
         <h1 class="tt-page-title mt-2">Infrastructure &amp; <span class="accent">Deployment</span></h1>
-        <p class="tt-page-subtitle">From local XAMPP development to Railway cloud hosting — the full deployment story.</p>
+        <p class="tt-page-subtitle">From local XAMPP development to Railway cloud hosting.</p>
     </div>
 </section>
 
@@ -37,7 +36,7 @@
             <div class="col-lg-8">
 
                 <!-- Two environments -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">Two Environments</h2>
                     <p>France Vacances runs in two distinct environments — a local development stack and a cloud production platform:</p>
 
@@ -82,7 +81,7 @@
                 </div>
 
                 <!-- nixpacks -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">nixpacks.toml — Zero-Config Build</h2>
                     <p>Railway uses <strong>nixpacks</strong> to detect and build the application automatically. A <code>nixpacks.toml</code> file overrides defaults where needed to ensure PHP extensions and build steps run correctly.</p>
 
@@ -119,7 +118,7 @@ cmd = <span class="str">"php artisan serve --host=0.0.0.0 --port=$PORT"</span>
                 </div>
 
                 <!-- CI/CD Pipeline -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">CI/CD Pipeline</h2>
                     <p>Code changes push through a three-stage pipeline from developer machine to live production:</p>
 
@@ -147,7 +146,7 @@ cmd = <span class="str">"php artisan serve --host=0.0.0.0 --port=$PORT"</span>
                 </div>
 
                 <!-- Environment Variables -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">Environment Variables</h2>
                     <p>All environment-specific configuration is stored in <code>.env</code> (local) or Railway environment variables (production). The <code>.env</code> file is <strong>never committed to Git</strong> — only <code>.env.example</code> is versioned.</p>
 
@@ -180,7 +179,7 @@ CACHE_STORE=<span class="kw">file</span>
                 </div>
 
                 <!-- Database migrations -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">Database & Migrations</h2>
                     <p>France Vacances uses <strong>17 migrations</strong> to version-control the database schema. The Railway MySQL plugin provides a managed database with automatic backups.</p>
 
@@ -222,7 +221,7 @@ php artisan <span class="fn">route:cache</span>           <span class="cm"># cac
                 </div>
 
                 <!-- File Storage -->
-                <div class="cs-section" data-aos="fade-up">
+                <div class="cs-section">
                     <h2 class="fw-bold mb-3" style="color:var(--tt-primary);">File Storage</h2>
                     <p>Property images are stored using Laravel's <strong>public disk</strong> (<code>storage/app/public/destinations/</code>). The <code>php artisan storage:link</code> command creates a symlink from <code>public/storage</code> to <code>storage/app/public</code>, making uploads accessible via the web.</p>
 
@@ -246,7 +245,7 @@ $image = $request->image-><span class="fn">store</span>(<span class="str">'desti
 
             <!-- Sidebar -->
             <div class="col-lg-4">
-                <div class="tt-sidebar-card mb-4" style="position:sticky;top:90px;" data-aos="fade-left">
+                <div class="tt-sidebar-card mb-4" style="position:sticky;top:90px;">
                     <h6 class="fw-bold mb-3" style="color:var(--tt-primary);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em;">Contents</h6>
                     @foreach([
                         'Two Environments',

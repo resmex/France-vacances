@@ -1,0 +1,95 @@
+/* ============================================
+   USERS PAGE
+   Simple, Excel-style admin table
+   ============================================ */
+
+.users-page-card {
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+}
+
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .85rem;
+}
+
+.users-avatar-sm {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--admin-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .7rem;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.users-avatar-sm img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.users-table thead th {
+    background: #f3f4f6;
+    color: #374151;
+    font-weight: 600;
+    text-align: left;
+    padding: .5rem .75rem;
+    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    white-space: nowrap;
+}
+
+.users-table thead th:last-child {
+    border-right: none;
+}
+
+.users-table tbody td {
+    padding: .5rem .75rem;
+    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    vertical-align: middle;
+    color: #1f2937;
+}
+
+.users-table tbody td:last-child {
+    border-right: none;
+}
+
+.users-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.users-table tbody tr:hover {
+    background: #f9fafb;
+}
+
+.users-role-select {
+    font-size: .8rem;
+    padding: 3px 6px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background: #fff;
+    color: #1f2937;
+}
+
+.users-btn-save {
+    background: var(--admin-primary, #082B4C);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 9px;
+    font-size: .8rem;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.users-btn-save:hover {
+    background: var(--admin-primary-hover, #061f38);
+}

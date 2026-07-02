@@ -32,7 +32,7 @@
             </div>
 
             <button type="submit" class="btn-admin-primary">
-                <i class="fas fa-save me-1"></i> Update Profile
+                <i class="fas fa-save me-1"></i> Update
             </button>
         </form>
     </div>

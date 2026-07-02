@@ -213,7 +213,7 @@
             <div class="d-flex gap-3">
                 <button type="submit" class="btn-admin-primary">
                     <i class="fas fa-save me-1"></i>
-                    {{ $editing ? 'Update Property' : 'Create Property' }}
+                    {{ $editing ? 'Update' : 'Save' }}
                 </button>
                 <a href="{{ route('destinations.index') }}" class="btn-admin-outline">Cancel</a>
             </div>
